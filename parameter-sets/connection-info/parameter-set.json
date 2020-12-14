@@ -1,0 +1,41 @@
+{
+    "meta" : {
+        "label" : "AKS connections",
+	"pluralLabel": "AKS connections",
+        "description" : "AKS connection settings",
+        "icon" : "icon-link"
+    },
+    
+    "defaultDefinableAtProjectLevel" : true,
+    "defaultDefinableInline" : true,
+
+    "pluginParams": [
+    ],
+
+    "params": [
+        {
+            "name": "subscriptionId",
+            "label": "Azure subscription ID",
+            "type": "STRING",
+            "mandatory" : false
+        },
+        {
+            "name": "tenantId",
+            "label": "Directory (tenant) ID",
+            "type": "STRING",
+            "mandatory" : true
+        },
+        {
+            "name": "clientId",
+            "label": "Application (client) ID",
+            "type": "STRING",
+            "mandatory" : true
+        },
+        {
+            "name": "password",
+            "label": "Password",
+            "type": "PASSWORD",
+            "mandatory" : true
+        }
+    ]
+}

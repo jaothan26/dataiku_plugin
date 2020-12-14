@@ -1,0 +1,98 @@
+{
+    "meta": {
+        "label": "Create AKS cluster",
+        "description": "Create AKS clusters",
+        "icon": "icon-puzzle-piece"
+    },
+    "architecture": "KUBERNETES",
+    "params": [
+        {
+            "name": "connectionInfo",
+            "label": "Connection",
+            "type": "PRESET",
+            "parameterSetId": "connection-info",
+            "mandatory": true
+        },
+        
+        {
+            "name": "clusterVersion",
+            "label": "Kubernetes version",
+            "type": "STRING",
+            "defaultValue": "latest"
+        },
+        {
+            "name": "resourceGroup",
+            "label": "Resource group",
+            "type": "STRING",
+            "mandatory": true
+        },
+        {
+            "name": "location",
+            "label": "Location",
+            "description": "Region in which to create the cluster, e.g. 'France Central'",
+            "type": "STRING",
+            "mandatory": true
+        },
+        {
+            "name": "useDistinctSPForCluster",
+            "label": "Use distinct credentials",
+            "description": "Associate cluster nodes with a specific Service Principal",
+            "type": "BOOLEAN",
+            "default": false,
+            "mandatory": true
+        },
+        {
+            "name": "clusterServicePrincipal",
+            "label": "Identity assumed by nodes",
+            "description": "Service principal used by the cluster's nodes (if different from the connection)",
+            "type": "PRESET",
+            "parameterSetId": "connection-info",
+            "mandatory": false,
+            "visibilityCondition": "model.useDistinctSPForCluster"
+        },
+        {
+            "name": "s-nodes",
+            "type": "SEPARATOR",
+            "label": "Cluster nodes"
+        },
+        {
+            "name": "nodePools",
+            "label": "Node pools",
+            "description": "Node pools to create in the cluster",
+            "type": "PRESETS",
+            "parameterSetId": "node-pool-request",
+            "mandatory": true
+        },
+        {
+            "name": "advanced-options",
+            "type": "SEPARATOR",
+            "label": "Advanced options"
+        },
+        {
+            "name": "serviceCIDR",
+            "label": "Service CIDR",
+            "description": "IP range for services in the cluster (cannot overlap the IP range of the pools' subnets)",
+            "type": "STRING",
+            "mandatory": true
+        },
+        {
+            "name": "dnsServiceIP",
+            "label": "DNS IP",
+            "description": "IP in the service IP range to use for the DNS server",
+            "type": "STRING",
+            "mandatory": true
+        },
+        {
+            "name": "loadBalancerSku",
+            "label": "Load balancer SKU",
+            "type": "SELECT",
+            "selectChoices": [
+                {"value":"Basic", "label":"Basic"},
+                {"value":"Standard", "label":"Standard"}
+            ],
+            "mandatory": false,
+            "defaultValue": "Basic"
+        }
+
+    ]
+}
